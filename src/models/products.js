@@ -5,9 +5,10 @@ const Products = {
     return knex("products").whereNull("deleted_at");
   },
   getById: () => {
-    return knex("products").where({ id }).first();
+    return knex("products").where({ id: id, deleted_at: null }).first();
   },
   create: (product) => {
+    console.log("product", product);
     return knex("products").insert(product).returning("*");
   },
   update: (id, product) => {

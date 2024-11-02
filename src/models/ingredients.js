@@ -1,11 +1,11 @@
-import knex from "./knex";
+import knex from "./knex.js";
 
 const Ingredients = {
   getAll: () => {
     return knex("ingredients").whereNull("deleted_at");
   },
   getById: (id) => {
-    return knex("ingredients").where({ id }).first();
+    return knex("ingredients").where({ id: id, deleted_at: null }).first();
   },
   create: (ingredient) => {
     return knex("ingredients").insert(ingredient).returning("*");

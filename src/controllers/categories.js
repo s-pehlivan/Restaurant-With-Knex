@@ -11,7 +11,7 @@ export const getCategoryById = async (req, res) => {
   if (category) {
     res.status(200).json(category);
   } else {
-    res.status(200).json({ message: "No category found" });
+    res.status(404).json({ message: "No category found" });
   }
 };
 
@@ -35,9 +35,7 @@ export const updateCategory = async (req, res) => {
 };
 
 export const deleteCategory = async (req, res) => {
-  console.log("starting to delete");
   const deleted = await Category.delete(req.params.id);
-  console.log("deleted", deleted);
   if (deleted) {
     res.status(200).json(deleted);
   } else {
