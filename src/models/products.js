@@ -1,14 +1,13 @@
-import knex from "./knex";
+import knex from "./knex.js";
 
 const Products = {
   getAll: () => {
     return knex("products").whereNull("deleted_at");
   },
-  getById: () => {
+  getById: (id) => {
     return knex("products").where({ id: id, deleted_at: null }).first();
   },
   create: (product) => {
-    console.log("product", product);
     return knex("products").insert(product).returning("*");
   },
   update: (id, product) => {
